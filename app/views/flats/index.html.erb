@@ -1,0 +1,25 @@
+<h1>All our Flats</h1>
+<br>
+<p><%= link_to "+ Add a new flat", new_flat_path %>
+<br>
+<p>You searched for . We found <%= @flats.length %> flats out of our <%= @flats.length %> on our website.</p>
+
+<% @flats.reverse.each do |flat| %>
+<div>
+  <div><%= flat.name.upcase %></div>
+  <div><%= flat.description %></div>
+  <div>
+    <p>🙋‍♀️ <%= flat.number_of_guests %></p>
+    <p>€ <%= flat.price_per_night %></p>
+  </div>
+  <div>
+    <p style="color: blue"><%= link_to "more info", flat_path(flat.id) %></p>
+    <p style="color: orange"><%= link_to "edit", edit_flat_path(flat.id) %></p>
+    <p style="color: red"><%= link_to "Delete", flat_path(flat.id),
+      method: :delete,
+      data: { confirm: "Are you sure?" } %>
+    </p>
+  </div>
+
+</div>
+<% end %>
